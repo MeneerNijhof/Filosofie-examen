@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <title>Filosofie HAVO – Examenplanner</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    :root {
+      --bg: #f5f5f5;
+      --card-bg: #ffffff;
+      --accent: #1f7a8c;
+      --accent-soft: #e1f3f7;
+      --text: #222222;
+      --muted: #666666;
+      --border-radius: 12px;
+      --shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      background: #111111;
+      color: #ffffff;
+      padding: 1rem 1.5rem;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.4rem;
+    }
+
+    header p {
+      margin: 0.2rem 0 0.5rem;
+      font-size: 0.9rem;
+      color: #cccccc;
+    }
+
+    nav {
+      margin-top: 0.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #ffffff;
+      background: rgba(255,255,255,0.06);
+      padding: 0.35rem 0.7rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+
+    nav a:hover {
+      background: rgba(255,255,255,0.15);
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 1.5rem auto 3rem;
+      padding: 0 1rem;
+    }
+
+    section {
+      margin-bottom: 2rem;
+    }
+
+    h2 {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    h2 span.section-tag {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+    }
+
+    p.lead {
+      margin-top: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      padding: 1rem 1.1rem;
+      margin-bottom: 1rem;
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 0.5rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .card-title {
+      font-weight: 600;
+    }
+
+    .card-subtitle {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 0.15rem 0.6rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      border: 1px solid rgba(0,0,0,0.08);
+      background: #f0f0f0;
+      color: #444444;
+      margin-left: 0.25rem;
+    }
+
+    .badge-ce {
+      background: var(--accent-soft);
+      color: var(--accent);
+      border-color: #c2e4ee;
+    }
+
+    .badge-mondeling {
+      background: #f4ecff;
+      color: #6a3bbd;
+      border-color: #e0d1ff;
+    }
+
+    .pill {
+      display: inline-block;
+      font-size: 0.8rem;
+      padding: 0.1rem 0.5rem;
+      border-radius: 999px;
+      background: #eeeeee;
+      color: #555555;
+      margin-right: 0.25rem;
+    }
+
+    .list-inline {
+      margin: 0.2rem 0 0.6rem;
+      padding: 0;
+      list-style: none;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .list-inline li {
+      display: inline;
+      margin-right: 0.8rem;
+    }
+
+    .card-section-title {
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-top: 0.6rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .card ul {
+      margin: 0.1rem 0 0.5rem;
+      padding-left: 1.2rem;
+      font-size: 0.9rem;
+    }
+
+    .card ul li {
+      margin-bottom: 0.2rem;
+    }
+
+    .small {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+      margin-top: 0.2rem;
+    }
+
+    .chip {
+      font-size: 0.8rem;
+      padding: 0.15rem 0.55rem;
+      border-radius: 999px;
+      background: #eeeeee;
+      color: #444444;
+    }
+
+    .chip-ce {
+      background: var(--accent-soft);
+      color: var(--accent);
+    }
+
+    .chip-m {
+      background: #f4ecff;
+      color: #6a3bbd;
+    }
+
+    .two-column {
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1.3fr);
+      gap: 1rem;
+    }
+
+    @media (max-width: 768px) {
+      .two-column {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      header {
+        position: static;
+      }
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--muted);
+      padding: 1rem 0 2rem;
+    }
+
+    a {
+      color: var(--accent);
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    code {
+      font-family: ui-monospace, Menlo, Consolas, monospace;
+      background: #eeeeee;
+      padding: 0.1rem 0.25rem;
+      border-radius: 4px;
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Filosofie HAVO – Examenplanner</h1>
+    <p>Staatsexamen Filosofie – centraal examen (Mens, dier en natuur) & voorbereiding mondeling</p>
+    <nav>
+      <a href="#intro">Intro</a>
+      <a href="#lessen">Lessen</a>
+      <a href="#begrippen">Begrippen</a>
+      <a href="#mondeling">Mondeling</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- INTRODUCTIE -->
+    <section id="intro">
+      <h2><span class="section-tag">Overzicht</span> Introductie</h2>
+      <div class="card">
+        <div class="two-column">
+          <div>
+            <p class="lead">
+              Deze site is jouw rode draad voor Filosofie (havo). Je vindt hier per les:
+              het onderwerp, het lesmateriaal, de belangrijkste begrippen en voorbeeldvragen.
+            </p>
+            <p class="small">
+              ➤ <strong>Lesnummers</strong> (Les 1, Les 2, …) komen overeen met de volgorde waarin je de lessen volgt.<br>
+              ➤ Alles met een <span class="badge badge-ce">CE</span> label is gericht op het <strong>centraal examen</strong>.<br>
+              ➤ Alles met een <span class="badge badge-mondeling">Mondeling</span> label helpt je alvast voor het <strong>mondeling college-examen</strong>.
+            </p>
+          </div>
+          <div>
+            <div class="card" style="background: #111111; color:#ffffff; box-shadow:none;">
+              <div class="card-section-title">Hoe gebruik je deze site?</div>
+              <ul>
+                <li>Zoek de <strong>les waar je bent</strong> (bijv. Les 5).</li>
+                <li>Bekijk de PPT en video bij die les.</li>
+                <li>Lees de aangegeven pagina’s uit de syllabus.</li>
+                <li>Leer de begrippen en maak de voorbeeldvragen.</li>
+              </ul>
+              <p class="small" style="margin-top:0.4rem;">
+                Mis je een les? Volg de ontbrekende lesnummers in de juiste volgorde om bij te werken.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LESSEN -->
+    <section id="lessen">
+      <h2><span class="section-tag">Route</span> Lessenoverzicht</h2>
+      <p class="lead">
+        Hieronder zie je de lessen in volgorde. Klik per les op de materialen en gebruik dit als naslag.
+      </p>
+
+      <!-- VOORBEELD: LES 1 -->
+      <article class="card" id="les-1">
+        <div class="card-header">
+          <div>
+            <div class="card-title">Les 1 – Intro Mens, dier en natuur</div>
+            <div class="card-subtitle">
+              Thema: inleiding op dierethiek & milieufilosofie
+              <span class="badge badge-ce">CE</span>
+            </div>
+          </div>
+          <div class="small">
+            Focus: overzicht examenonderwerp & morele cirkel
+          </div>
+        </div>
+
+        <ul class="list-inline">
+          <li><strong>Syllabus:</strong> p. 9–11 (algemene inleiding)</li>
+        </ul>
+
+        <div class="card-section-title">Lesmateriaal</div>
+        <ul>
+          <li>PPT: <a href="#">[link naar PPT Les 1]</a></li>
+          <li>Video (optioneel): <a href="#">[link naar video Les 1]</a></li>
+          <li>Syllabus: lees p. 9–11 – algemene inleiding op mens, dier en natuur.</li>
+        </ul>
+
+        <div class="card-section-title">Belangrijkste begrippen</div>
+        <ul>
+          <li><strong>Morele cirkel</strong> – wie of wat nemen we mee in onze morele afwegingen?</li>
+          <li><strong>Instrumentele waarde</strong> – de waarde die iets heeft als middel voor iets anders.</li>
+          <li><strong>Intrinsieke waarde</strong> – de waarde die iets op zichzelf heeft, los van nut voor ons.</li>
+        </ul>
+
+        <div class="card-section-title">Voorbeeldvragen</div>
+        <ul>
+          <li>Leg in je eigen woorden uit wat wordt bedoeld met de <strong>morele cirkel</strong>.</li>
+          <li>Noem een voorbeeld van iets met vooral instrumentele waarde en iets met intrinsieke waarde.</li>
+        </ul>
+
+        <div class="card-section-title">Labels</div>
+        <div class="chips">
+          <span class="chip chip-ce">Inleiding CE-onderwerp</span>
+          <span class="chip">Morele cirkel</span>
+        </div>
+      </article>
+
+      <!-- VOORBEELD: LES 2 -->
+      <article class="card" id="les-2">
+        <div class="card-header">
+          <div>
+            <div class="card-title">Les 2 – Kwestie 1: Aristoteles – de mens als denkend dier</div>
+            <div class="card-subtitle">
+              Thema: vegetatieve, sensitieve en rationele ziel
+              <span class="badge badge-ce">CE</span>
+            </div>
+          </div>
+          <div class="small">
+            Focus: verschil mens – dier bij Aristoteles
+          </div>
+        </div>
+
+        <ul class="list-inline">
+          <li><strong>Syllabus:</strong> p. 15–16 (positie Aristoteles)</li>
+        </ul>
+
+        <div class="card-section-title">Lesmateriaal</div>
+        <ul>
+          <li>PPT: <a href="#">[link naar PPT Les 2]</a></li>
+          <li>Video (optioneel): <a href="#">[link naar video Les 2]</a></li>
+          <li>Syllabus: lees p. 15–16 over de ladder van het leven en de drie zielen.</li>
+        </ul>
+
+        <div class="card-section-title">Belangrijkste begrippen</div>
+        <ul>
+          <li><strong>Vegetatieve ziel</strong> – gericht op voeding, groei en voortplanting (planten).</li>
+          <li><strong>Sensitieve ziel</strong> – gevoel, waarneming en beweging (dieren).</li>
+          <li><strong>Rationele ziel</strong> – denken en redeneren (mensen).</li>
+          <li><strong>Telos</strong> – het natuurlijke doel of de bestemming van een levend wezen.</li>
+        </ul>
+
+        <div class="card-section-title">Voorbeeldvragen</div>
+        <ul>
+          <li>Leg uit wat Aristoteles bedoelt met <strong>telos</strong> en geef een voorbeeld.</li>
+          <li>Waarom is Aristoteles’ visie op telos zowel beschrijvend (descriptief) als normatief?</li>
+        </ul>
+
+        <div class="card-section-title">Labels</div>
+        <div class="chips">
+          <span class="chip chip-ce">Kwestie 1</span>
+          <span class="chip">Aristoteles</span>
+          <span class="chip">Telos</span>
+        </div>
+      </article>
+
+      <!-- VOORBEELD: LES 3 -->
+      <article class="card" id="les-3">
+        <div class="card-header">
+          <div>
+            <div class="card-title">Les 3 – Kwestie 1: Descartes – dieren als machines?</div>
+            <div class="card-subtitle">
+              Thema: substantiedualisme & het interactieprobleem
+              <span class="badge badge-ce">CE</span>
+            </div>
+          </div>
+          <div class="small">
+            Focus: res cogitans, res extensa, dieren en gevoel
+          </div>
+        </div>
+
+        <ul class="list-inline">
+          <li><strong>Syllabus:</strong> p. 16–17 (positie Descartes)</li>
+        </ul>
+
+        <div class="card-section-title">Lesmateriaal</div>
+        <ul>
+          <li>PPT: <a href="#">[link naar PPT Les 3]</a></li>
+          <li>Video (optioneel): <a href="#">[link naar video Les 3]</a></li>
+          <li>Syllabus: lees p. 16–17 over substantiedualisme en dieren als machines.</li>
+        </ul>
+
+        <div class="card-section-title">Belangrijkste begrippen</div>
+        <ul>
+          <li><strong>Substantiedualisme</strong> – de opvatting dat geest en lichaam twee verschillende “stoffen” zijn.</li>
+          <li><strong>Res cogitans</strong> – denkende substantie (geest).</li>
+          <li><strong>Res extensa</strong> – uitgebreide, materiële substantie (lichaam).</li>
+          <li><strong>Interactieprobleem</strong> – hoe kan iets niet-materieels (geest) invloed hebben op iets materiaals (lichaam)?</li>
+        </ul>
+
+        <div class="card-section-title">Voorbeeldvragen</div>
+        <ul>
+          <li>Waarom zegt Descartes dat dieren geen pijn kunnen <em>ervaren</em>, maar wel kunnen reageren op prikkels?</li>
+          <li>Leg kort uit wat het <strong>interactieprobleem</strong> is.</li>
+        </ul>
+
+        <div class="card-section-title">Labels</div>
+        <div class="chips">
+          <span class="chip chip-ce">Kwestie 1</span>
+          <span class="chip">Descartes</span>
+          <span class="chip">Dualisme</span>
+        </div>
+      </article>
+
+      <!--
+        TIP VOOR JEZELF:
+        Kopieer vanaf <article class="card" ...> tot en met </article>
+        voor Les 4, Les 5, enzovoort.
+        Pas dan alleen:
+        - id="les-x"
+        - titel en thema
+        - syllabus-paginanummers
+        - links naar PPT / video
+        - begrippen + voorbeeldvragen
+      -->
+    </section>
+
+    <!-- BEGRIPPEN -->
+    <section id="begrippen">
+      <h2><span class="section-tag">Taal</span> Begrippenlijst</h2>
+      <p class="lead">
+        Hier kun je belangrijke begrippen opzoeken. Deze lijst kun je zelf steeds verder aanvullen.
+      </p>
+
+      <div class="card">
+        <div class="card-section-title">Voorbeeldbegrippen</div>
+        <ul>
+          <li>
+            <strong>Morele cirkel</strong> – de groep wezens die we meenemen in onze morele afwegingen.
+            <span class="badge badge-ce">CE</span>
+          </li>
+          <li>
+            <strong>Instrumentele waarde</strong> – waarde als middel om iets anders te bereiken (bijvoorbeeld geld of een gereedschap).
+          </li>
+          <li>
+            <strong>Intrinsieke waarde</strong> – waarde die iets op zichzelf heeft, los van het nut voor iemand anders.
+          </li>
+          <li>
+            <strong>Telos</strong> – het natuurlijke doel of de bestemming van een levend wezen (Aristoteles).
+          </li>
+          <li>
+            <strong>Substantiedualisme</strong> – de leer dat geest en lichaam twee verschillende soorten substanties zijn (Descartes).
+          </li>
+        </ul>
+        <p class="small">
+          ➤ Voeg hier later meer begrippen toe uit de syllabus en het mondeling-programma.<br>
+          ➤ Je kunt er ook bij schrijven in welke les het begrip is behandeld (bijv. “Les 2”).
+        </p>
+      </div>
+    </section>
+
+    <!-- MONDELING -->
+    <section id="mondeling">
+      <h2><span class="section-tag">Later</span> Mondeling college-examen</h2>
+      <div class="card">
+        <p class="lead">
+          Voor het mondeling examen moet je ook de algemene domeinen kennen: vaardigheden (A),
+          wijsgerige antropologie (B), ethiek (C) en sociale filosofie (D).
+        </p>
+        <div class="card-section-title">Wat komt er ongeveer terug?</div>
+        <ul>
+          <li><strong>Domein A – Vaardigheden</strong>: begripsanalyse, vooronderstellingen, standpunt beargumenteren.</li>
+          <li><strong>Domein B – Wijsgerige antropologie</strong>: wat is de mens, verhouding lichaam-geest, vrijheid, identiteit.</li>
+          <li><strong>Domein C – Ethiek</strong>: goede leven, deugdethiek, utilisme, plichtethiek.</li>
+          <li><strong>Domein D – Sociale filosofie</strong>: rechtvaardige samenleving, staat, macht, vrijheid.</li>
+        </ul>
+        <p class="small">
+          In veel lessen wordt hier al een beetje aan gewerkt (bijvoorbeeld bij begripsanalyse of bij het vergelijken van filosofen).
+          Later kun je hier extra materialen en casussen toevoegen speciaal voor het mondeling.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Filosofie HAVO – Examenplanner · Maak notities bij elke les en vul zelf de links en begrippen aan.
+  </footer>
+</body>
+</html>
