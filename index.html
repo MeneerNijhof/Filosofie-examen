@@ -293,7 +293,7 @@
               <ul>
                 <li>Zoek de <strong>les waar je bent</strong> (bijv. Les 5).</li>
                 <li>Bekijk de PPT en video bij die les.</li>
-                <li>Lees de aangegeven pagina’s uit de syllabus.</li>
+                <li>Lees de aangegeven pagina’s uit de Syllabus.</li>
                 <li>Leer de begrippen en maak de voorbeeldvragen.</li>
               </ul>
               <p class="small" style="margin-top:0.4rem;">
@@ -309,10 +309,10 @@
     <section id="lessen">
       <h2><span class="section-tag">Route</span> Lessenoverzicht</h2>
       <p class="lead">
-        Hieronder zie je de lessen in volgorde. Klik per les op de materialen en gebruik dit als naslag.
+        Hieronder zie je de lessen in volgorde. Gebruik dit als naslag bij de lessen.
       </p>
 
-      <!-- VOORBEELD: LES 1 -->
+      <!-- LES 1 -->
       <article class="card" id="les-1">
         <div class="card-header">
           <div>
@@ -335,10 +335,7 @@
         <ul>
           <li>PPT: <a href="#">[link naar PPT Les 1]</a></li>
           <li>Video (optioneel): <a href="#">[link naar video Les 1]</a></li>
-          <li>
-  <a href="syllabus-filosofie-havo.pdf" target="_blank">Syllabus</a>:
-  lees p. 9–14 – algemene inleiding op mens, dier en natuur.
-</li>
+          <li>Syllabus: lees p. 9–14 – algemene inleiding op Mens, dier en natuur.</li>
         </ul>
 
         <div class="card-section-title">Belangrijkste begrippen</div>
@@ -361,7 +358,7 @@
         </div>
       </article>
 
-      <!-- VOORBEELD: LES 2 -->
+      <!-- LES 2 -->
       <article class="card" id="les-2">
         <div class="card-header">
           <div>
@@ -409,7 +406,7 @@
         </div>
       </article>
 
-      <!-- VOORBEELD: LES 3 -->
+      <!-- LES 3 -->
       <article class="card" id="les-3">
         <div class="card-header">
           <div>
@@ -458,15 +455,10 @@
       </article>
 
       <!--
-        TIP VOOR JEZELF:
-        Kopieer vanaf <article class="card" ...> tot en met </article>
-        voor Les 4, Les 5, enzovoort.
-        Pas dan alleen:
-        - id="les-x"
-        - titel en thema
-        - syllabus-paginanummers
-        - links naar PPT / video
-        - begrippen + voorbeeldvragen
+        Voor nieuwe lessen:
+        Kopieer een <article class="card">...</article>,
+        pas lesnummer, titel, syllabus-pagina's, begrippen en vragen aan.
+        Het woord "Syllabus" wordt automatisch overal een link.
       -->
     </section>
 
@@ -498,7 +490,7 @@
           </li>
         </ul>
         <p class="small">
-          ➤ Voeg hier later meer begrippen toe uit de syllabus en het mondeling-programma.<br>
+          ➤ Voeg hier later meer begrippen toe uit de Syllabus en het mondeling-programma.<br>
           ➤ Je kunt er ook bij schrijven in welke les het begrip is behandeld (bijv. “Les 2”).
         </p>
       </div>
@@ -528,7 +520,51 @@
   </main>
 
   <footer>
-    Filosofie HAVO – Examenplanner · Maak notities bij elke les en vul zelf de links en begrippen aan.
+    Filosofie HAVO – Examenplanner · Vul per les de links naar PPT, video en Syllabus-pagina's aan.
   </footer>
+
+  <!-- SCRIPT: maak overal "Syllabus" klikbaar -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // PAS DIT AAN NAAR DE NAAM VAN JOUW PDF
+      const pdfUrl = 'syllabus-filosofie-havo.pdf';
+
+      const regex = /\bSyllabus\b/g;
+      const walker = document.createTreeWalker(
+        document.body,
+        NodeFilter.SHOW_TEXT,
+        null
+      );
+
+      const textNodes = [];
+      let node;
+
+      while ((node = walker.nextNode())) {
+        if (regex.test(node.nodeValue)) {
+          textNodes.push(node);
+        }
+      }
+
+      textNodes.forEach(textNode => {
+        const parent = textNode.parentNode;
+        const parts = textNode.nodeValue.split(regex);
+
+        parts.forEach((part, index) => {
+          if (part.length > 0) {
+            parent.insertBefore(document.createTextNode(part), textNode);
+          }
+          if (index < parts.length - 1) {
+            const link = document.createElement('a');
+            link.href = pdfUrl;
+            link.target = '_blank';
+            link.textContent = 'Syllabus';
+            parent.insertBefore(link, textNode);
+          }
+        });
+
+        parent.removeChild(textNode);
+      });
+    });
+  </script>
 </body>
 </html>
